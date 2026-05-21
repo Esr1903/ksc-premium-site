@@ -9,6 +9,7 @@ import {
   Binary,
   Building2,
   CheckCircle2,
+  ChevronRight,
   CloudCog,
   Cpu,
   DatabaseZap,
@@ -23,26 +24,27 @@ import {
   Radar,
   ScanLine,
   ShieldCheck,
+  Sparkles,
+  Target,
   Zap,
 } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
   show: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.68, ease: "easeOut" },
   },
 };
 
 const stagger: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.06 } },
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
 };
 
 const navItems = [
-  { label: "Video", href: "#intro-video" },
   { label: "Problem", href: "#problem" },
   { label: "Çözüm", href: "#solution" },
   { label: "Ürün", href: "#product" },
@@ -53,73 +55,71 @@ const navItems = [
   { label: "Yatırım", href: "#investment" },
 ];
 
+const heroMetrics = [
+  ["%10–70", "Düşük entropide küçülme hedefi"],
+  ["%1–5", "Yüksek entropide sınırlı kayıp"],
+  ["10–20 KB", "RAM hedefi"],
+  ["TRL 4", "Deneysel kanıtlama"],
+];
+
 const proofRows = [
-  { label: "1. kapsül", disk: "181.841.920 bayt", delta: "referans", rate: "—" },
-  { label: "5. kapsül", disk: "181.858.304 bayt", delta: "+16.384 bayt", rate: "%0,009" },
-  { label: "10. kapsül", disk: "181.878.784 bayt", delta: "+36.864 bayt", rate: "%0,0203" },
+  { label: "1. kapsül", delta: "referans", rate: "—" },
+  { label: "5. kapsül", delta: "+16.384 bayt", rate: "%0,009" },
+  { label: "10. kapsül", delta: "+36.864 bayt", rate: "%0,0203" },
 ];
 
 const problemCards = [
   {
     no: "01",
     title: "Boyut ve maliyet patlaması",
-    copy:
-      "Mevcut güvenlik çözümleri koruma sağlarken veri boyutunu artırabiliyor. Yüksek güvenlik, küçük dosya boyutu ve düşük işlem yükü hedefleri çoğu yaklaşımda aynı anda sağlanamıyor.",
+    copy: "Mevcut güvenlik çözümleri koruma sağlarken veri boyutunu artırabiliyor. Yüksek güvenlik, küçük dosya boyutu ve düşük işlem yükü çoğu yaklaşımda aynı anda sağlanamıyor.",
     icon: BarChart3,
   },
   {
     no: "02",
     title: "Metadata sızıntısı",
-    copy:
-      "İçerik okunamasa bile dosya türü, başlık, zamanlama, paket yapısı ve veri davranışı saldırgana önemli ipuçları verebilir. Siber istihbaratta metadata çoğu zaman içeriğin kendisi kadar kritiktir.",
+    copy: "İçerik okunamasa bile dosya türü, başlık, paket yapısı ve veri davranışı dışarıdan ipucu verebilir. KSC, yalnızca içeriği değil, veri temsilini de hedefler.",
     icon: EyeOff,
   },
   {
     no: "03",
     title: "IoT ve gömülü cihaz kısıtları",
-    copy:
-      "Milyarlarca cihaz düşük RAM, sınırlı işlem gücü ve düşük enerji bütçesiyle çalışıyor. Ağır güvenlik katmanları bu sistemlerde performansı düşürebiliyor.",
+    copy: "Milyarlarca cihaz düşük RAM, sınırlı işlem gücü ve düşük enerji bütçesiyle çalışır. Ağır güvenlik katmanları bu cihazlarda pratik olmayabilir.",
     icon: Cpu,
   },
   {
     no: "04",
     title: "Tekdüze çıktı davranışı",
-    copy:
-      "Birçok geleneksel yaklaşım tanınabilir formatlar, sabit yapılar veya öngörülebilir çıktı davranışı üretir. Bu durum desen tanıma ve hedefleme riskini artırır.",
+    copy: "Tanıdık formatlar, sabit yapılar ve öngörülebilir çıktı davranışları desen tanıma riskini artırır. KSC, kapsül davranışını daha kontrollü hale getirir.",
     icon: Layers3,
   },
   {
     no: "05",
-    title: "Güvenlik ve sıkıştırmanın ayrı çalışması",
-    copy:
-      "Sıkıştırma, şifreleme ve kapsülleme ayrı ayrı uygulandığında hem yönetim karmaşası oluşur hem de çıktı boyutu ve işlem maliyeti kontrolsüz hale gelebilir.",
+    title: "Dağınık güvenlik zinciri",
+    copy: "Sıkıştırma, şifreleme ve kapsülleme ayrı araçlarla yapıldığında yönetim karmaşası ve operasyonel maliyet artar. KSC bu akışı tek veri katmanında toplar.",
     icon: FileLock2,
   },
 ];
 
 const solutionCards = [
   {
-    title: "Kontrollü veri kapsülleme",
-    copy:
-      "KSC, hassas veriyi tek tip ve kontrollü bir kapsül davranışına taşımayı hedefler. Web sitesinde prensipler anlatılır; ürün çekirdeğinin uygulama detayları korunur.",
+    title: "Kontrollü kapsülleme",
+    copy: "Hassas veri, tek tip ve kontrollü bir kapsül davranışına taşınır. Mekanizmanın detayları açık edilmeden değer önerisi net biçimde anlatılır.",
     icon: LockKeyhole,
   },
   {
-    title: "Entropi ve boyut optimizasyonu",
-    copy:
-      "Düşük entropili verilerde boyut küçülmesi hedeflenirken, yüksek entropili verilerde boyut artışı sınırlı tutulur. Böylece güvenlik, operasyonel maliyete dönüşmez.",
+    title: "Boyut davranışı kontrolü",
+    copy: "Düşük entropili verilerde küçülme; yüksek entropili verilerde sınırlı artış hedeflenir. Güvenlik operasyonel maliyete dönüşmez.",
     icon: Gauge,
   },
   {
     title: "Başlık ve parametre koruması",
-    copy:
-      "Kapsülün çözüm bilgileri, kontrol parametreleri ve kritik yapı taşları açıkta bırakılmaz. Amaç, dışarıdan anlamlandırma yüzeyini azaltmaktır.",
+    copy: "Kapsülün çözüm bilgileri, kontrol parametreleri ve kritik yapı taşları dışarıdan okunabilir halde bırakılmaz.",
     icon: ShieldCheck,
   },
   {
     title: "Düşük kaynak uyumu",
-    copy:
-      "KSC; IoT, gömülü sistemler, uç bilişim ve düşük kaynaklı cihazlar için yazılım tabanlı bir ek güvenlik katmanı olarak konumlanır.",
+    copy: "IoT, gömülü sistemler, uç bilişim ve kısıtlı cihazlar için yazılım tabanlı tamamlayıcı güvenlik katmanı olarak konumlanır.",
     icon: Cpu,
   },
 ];
@@ -129,41 +129,36 @@ const productTabs = [
     id: "sdk",
     label: "API / SDK",
     title: "Yazılım kütüphanesi olarak entegrasyon",
-    copy:
-      "C, C++, Rust ve Python gibi diller için planlanan SDK yapısı sayesinde KSC, geliştiricilerin kendi uygulamalarına entegre edebileceği bir güvenli kapsülleme bileşeni olarak sunulabilir. API anahtarları, test araçları ve dokümantasyonla birlikte lisanslanabilir.",
-    badge: "Geliştirici ekosistemi · Lisanslanabilir çekirdek",
+    copy: "C, C++, Rust ve Python gibi diller için planlanan SDK yapısı sayesinde KSC; geliştiricilerin kendi ürünlerine entegre edebileceği bir güvenli kapsülleme bileşeni olarak sunulabilir.",
+    badge: "Developer ecosystem · Lisanslanabilir çekirdek",
   },
   {
     id: "cli",
-    label: "CLI Aracı",
-    title: "Platformlar arası komut satırı deneyimi",
-    copy:
-      "Dosya veya veri akışlarını komut satırı üzerinden kapsüllemek için Linux, macOS ve Windows üzerinde çalışabilecek CLI aracı ürünün ilk teknik doğrulama yüzünü oluşturur. Geliştiriciler ve teknik ekipler için hızlı test ve PoC süreci sağlar.",
-    badge: "Prototip · Test senaryoları · Teknik doğrulama",
+    label: "CLI",
+    title: "Platformlar arası teknik doğrulama aracı",
+    copy: "Linux, macOS ve Windows üzerinde çalışabilecek CLI aracı; geliştiriciler ve teknik ekipler için hızlı test, PoC ve entegrasyon doğrulama deneyimi sağlar.",
+    badge: "PoC · Test · Teknik doğrulama",
   },
   {
     id: "gui",
-    label: "GUI Uygulaması",
-    title: "Teknik olmayan kullanıcılar için sade arayüz",
-    copy:
-      "Kurumsal kullanıcılar için sürükle-bırak mantığında çalışan masaüstü arayüzü planlanır. Kullanıcı dosyayı seçer, güvenlik seviyesini belirler ve kapsül çıktısını birkaç adımda üretir.",
-    badge: "Kurumsal kullanım · Kolay benimseme",
+    label: "GUI",
+    title: "Kurumsal kullanıcı için sade masaüstü deneyimi",
+    copy: "Sürükle-bırak mantığında çalışan arayüz; teknik olmayan ekiplerin dosya seçip güvenli kapsül çıktısı üretmesine olanak verir.",
+    badge: "Kolay benimseme · Kurumsal kullanım",
   },
   {
     id: "oem",
-    label: "OEM / Gömülü",
+    label: "OEM",
     title: "Cihaz üreticileri için entegre güvenlik katmanı",
-    copy:
-      "IoT ve gömülü cihaz üreticileri, KSC çekirdeğini ürün yazılımlarına entegre ederek her cihaz başına lisans modeliyle ölçeklenebilir gelir kanalı oluşturabilir. Donanım değişikliği gerektirmeyen yazılım tabanlı yaklaşım stratejik avantaj sağlar.",
-    badge: "OEM lisans · Firmware entegrasyonu · Cihaz başı gelir",
+    copy: "IoT ve gömülü cihaz üreticileri, KSC çekirdeğini ürün yazılımlarına entegre ederek cihaz başına lisans modeliyle ölçeklenebilir gelir kanalı oluşturabilir.",
+    badge: "Firmware · Cihaz başı lisans · OEM",
   },
   {
     id: "saas",
-    label: "On-Premise / SaaS",
+    label: "SaaS / On-Prem",
     title: "Kurumsal panel ve yönetilen servis modeli",
-    copy:
-      "Büyük kurumlar için on-premise dağıtım; küçük ve orta ölçekli ekipler için yönetilen SaaS paneli planlanabilir. API kullanımı, kapsül geçmişi, erişim politikaları ve raporlar tek panelden yönetilebilir.",
-    badge: "Kurumsal dağıtım · SaaS panel · Yönetim katmanı",
+    copy: "Büyük kurumlar için on-premise dağıtım; küçük ve orta ölçekli ekipler için SaaS paneli planlanabilir. API kullanımı, kapsül geçmişi ve erişim politikaları tek panelden yönetilebilir.",
+    badge: "Enterprise · SaaS · Yönetim paneli",
   },
 ];
 
@@ -237,30 +232,54 @@ const domainDetails = [
   },
 ];
 
+const marketCards = [
+  { title: "Siber Güvenlik", value: "$274Md", desc: "2030 projeksiyonunda $478Md bandına ilerleyen ana pazar." },
+  { title: "IoT Güvenliği", value: "$11.2Md", desc: "Yüksek CAGR ile en hızlı büyüyen alt segmentlerden biri." },
+  { title: "Veri Sıkıştırma", value: "$1.5Md", desc: "Bulut, medya, analitik ve yapay zekâ veri hacmiyle büyüyen segment." },
+  { title: "Gömülü Güvenlik", value: "$10Md", desc: "Uç bilişim, otonom sistemler ve tıbbi cihazlarla genişleyen alan." },
+];
+
+const tamSamSom = [
+  {
+    code: "TAM",
+    title: "Toplam Erişilebilir Pazar",
+    value: "$150Md+",
+    desc: "Siber güvenlik, IoT güvenliği, veri sıkıştırma ve gömülü sistem güvenliği pazarlarının toplamı. KSC’nin teorik olarak temas edebileceği maksimum pazar alanıdır.",
+  },
+  {
+    code: "SAM",
+    title: "Hizmet Verilebilir Erişilebilir Pazar",
+    value: "$40–50Md",
+    desc: "KSC’nin coğrafi, teknik ve segment odağıyla gerçekten ulaşabileceği pazar dilimi. IoT güvenliği ve siber güvenlik yazılımı kesişim segmentidir.",
+  },
+  {
+    code: "SOM",
+    title: "Hizmet Verilebilir Elde Edilebilir Pazar",
+    value: "$400M–$1.5Md",
+    desc: "İlk 3–5 yılda %1–3 penetrasyon hedefi. Erken müşteri segmenti: fintech, savunma sanayi ve IoT OEM pazarları.",
+  },
+];
+
 const competitorCards = [
   {
     tag: "Disk & Dosya Şifreleme",
     title: "VeraCrypt, AxCrypt, NordLocker",
-    copy:
-      "Güvenilir ve olgunlaşmış şifreleme araçlarıdır. Ancak çoğu veri boyutunu küçültmez, metadata sızıntısını doğrudan çözmez ve IoT/gömülü sistemlerde doğal olarak çalışacak hafif bir kapsülleme katmanı sunmaz. KSC bu ürünlere doğrudan rakip değil; onların yetmediği veri katmanında devreye giren tamamlayıcı bir sınıftır.",
+    copy: "Güvenilir ve olgunlaşmış şifreleme araçlarıdır. Ancak çoğu veri boyutunu küçültmez, metadata sızıntısını doğrudan çözmez ve IoT/gömülü sistemlerde doğal olarak çalışacak hafif bir kapsülleme katmanı sunmaz. KSC bu ürünlere doğrudan rakip değil; onların yetmediği veri katmanında devreye giren tamamlayıcı bir sınıftır.",
   },
   {
     tag: "Dosya Sıkıştırma",
     title: "WinRAR, 7-Zip, PeaZip, WinZip",
-    copy:
-      "Milyarlarca kullanıcının güvendiği arşivleme araçlarıdır. Boyutu küçültürler fakat güvenlik ana değer önerileri değildir; arşiv başlıkları ve format yapıları tanınabilir kalabilir. KSC’nin iddiası yalnızca sıkıştırmak değil, sıkıştırırken aynı anda anlamlandırılması zor bir kapsül davranışı oluşturmaktır.",
+    copy: "Milyarlarca kullanıcının güvendiği arşivleme araçlarıdır. Boyutu küçültürler fakat güvenlik ana değer önerileri değildir; arşiv başlıkları ve format yapıları tanınabilir kalabilir. KSC’nin iddiası yalnızca sıkıştırmak değil, sıkıştırırken aynı anda anlamlandırılması zor bir kapsül davranışı oluşturmaktır.",
   },
   {
     tag: "Kurumsal Veri Güvenliği",
     title: "Symantec Endpoint Security, ESET, Bitdefender GravityZone",
-    copy:
-      "Kapsamlı uç nokta güvenlik platformlarıdır. Kötü amaçlı yazılım, tehdit tespiti ve şifreleme politikalarını yönetirler; ancak veri boyutunu küçültme ve kaynak kısıtlı cihazlarda hafif kapsülleme üretme odağında değildirler. KSC, bu platformların işlemediği veri temsil katmanında konumlanır.",
+    copy: "Kapsamlı uç nokta güvenlik platformlarıdır. Kötü amaçlı yazılım, tehdit tespiti ve şifreleme politikalarını yönetirler; ancak veri boyutunu küçültme ve kaynak kısıtlı cihazlarda hafif kapsülleme üretme odağında değildirler. KSC, bu platformların işlemediği veri temsil katmanında konumlanır.",
   },
   {
     tag: "Donanım Tabanlı IoT Güvenliği",
     title: "Rambus CryptoManager, Infineon Optiga, NXP EdgeLock",
-    copy:
-      "Silikon seviyesinde güvenlik sağlayan donanım IP ve çip çözümleridir. Son derece güçlüdür; ancak özel donanım entegrasyonu gerektirir. KSC ise mevcut cihazlara donanım değişikliği olmadan yazılım tabanlı ek güvenlik getirmeyi hedefler.",
+    copy: "Silikon seviyesinde güvenlik sağlayan donanım IP ve çip çözümleridir. Son derece güçlüdür; ancak özel donanım entegrasyonu gerektirir. KSC ise mevcut cihazlara donanım değişikliği olmadan yazılım tabanlı ek güvenlik getirmeyi hedefler.",
   },
 ];
 
@@ -297,7 +316,7 @@ function GlowLink({ href, children, variant = "primary" }: { href: string; child
       href={href}
       className={
         variant === "primary"
-          ? "group relative inline-flex overflow-hidden rounded-full bg-lime-300 px-6 py-3 text-sm font-semibold text-black shadow-[0_0_40px_rgba(190,242,100,0.26)] transition hover:scale-[1.02]"
+          ? "group relative inline-flex overflow-hidden rounded-full bg-lime-300 px-6 py-3 text-sm font-semibold text-black shadow-[0_0_45px_rgba(190,242,100,0.28)] transition hover:scale-[1.02]"
           : "group relative inline-flex overflow-hidden rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur-xl transition hover:border-lime-300/40 hover:text-lime-200"
       }
     >
@@ -341,12 +360,12 @@ function Hero() {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 py-20 md:grid-cols-[1.08fr_0.92fr] md:py-28">
         <motion.div variants={stagger} initial="hidden" animate="show">
-          <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border border-lime-300/20 bg-lime-300/10 px-4 py-2 text-xs font-medium text-lime-100 shadow-[0_0_30px_rgba(190,242,100,0.08)]"><ScanLine className="h-4 w-4" /> Yatırımcı Sunumu · 2026 · Secure Encapsulation</motion.div>
+          <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border border-lime-300/20 bg-lime-300/10 px-4 py-2 text-xs font-medium text-lime-100 shadow-[0_0_30px_rgba(190,242,100,0.08)]"><ScanLine className="h-4 w-4" /> Secure Encapsulation · TRL 4 · Investor Ready</motion.div>
           <motion.h1 variants={fadeUp} className="max-w-5xl text-5xl font-semibold tracking-[-0.06em] text-white md:text-7xl lg:text-8xl">Veriyi <span className="bg-gradient-to-r from-lime-200 via-white to-cyan-200 bg-clip-text text-transparent">katmanlı korurken</span> boyut davranışını kontrol altında tut.</motion.h1>
           <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-lg leading-8 text-white/65">KSC, geleneksel şifreleme ve kapsülleme yaklaşımlarının en kritik sorunlarından biri olan çıktı boyutu ve metadata izini hedefleyen; kontrollü sıkıştırma, entropi odaklı koruma ve güvenli kapsülleme fikrini birleştiren yazılım tabanlı bir veri güvenliği yaklaşımıdır.</motion.p>
           <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row"><GlowLink href="#investment">Yatırım detayları <ArrowRight className="h-4 w-4" /></GlowLink><GlowLink href="#product" variant="ghost">Teknolojiyi incele</GlowLink></motion.div>
           <motion.div variants={fadeUp} className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-4">
-            {[["%10–70", "Düşük entropide küçülme hedefi"], ["%1–5", "Yüksek entropide sınırlı kayıp"], ["10–20 KB", "RAM hedefi"], ["TRL 4", "Deneysel kanıtlama"]].map(([num, label]) => <div key={label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl"><div className="text-2xl font-semibold text-lime-200">{num}</div><div className="mt-1 text-xs text-white/45">{label}</div></div>)}
+            {heroMetrics.map(([num, label]) => <div key={label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition hover:-translate-y-1 hover:border-lime-300/25"><div className="text-2xl font-semibold text-lime-200">{num}</div><div className="mt-1 text-xs text-white/45">{label}</div></div>)}
           </motion.div>
         </motion.div>
 
@@ -380,7 +399,6 @@ function IntroVideoSection() {
           <div className="relative overflow-hidden rounded-[2rem] border border-lime-300/20 bg-black/50 p-2 shadow-[0_28px_100px_rgba(0,0,0,0.5)]">
             <video className="aspect-video w-full rounded-[1.55rem] object-cover" src="/ksc-intro.mp4" controls autoPlay muted loop playsInline poster="/ksc-video-poster.png" />
           </div>
-          <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-xs text-white/50 backdrop-blur-xl"><span>1 dakikalık ürün ön izlemesi</span><span className="text-lime-200">KSC Secure Data Systems</span></div>
         </motion.div>
       </motion.div>
     </section>
@@ -478,41 +496,49 @@ function DomainsSection() {
 
 function MarketSection() {
   return (
-    <section id="market" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
+    <section id="market" className="relative mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
+      <div className="absolute left-[-10%] top-[20%] h-[420px] w-[420px] rounded-full bg-lime-300/10 blur-[130px]" />
+      <div className="absolute right-[-10%] bottom-[10%] h-[420px] w-[420px] rounded-full bg-cyan-300/10 blur-[130px]" />
       <SectionHeader eyebrow="07 — Pazar Büyüklüğü" title="Dört büyük pazarın kesişim noktasında" copy="KSC; siber güvenlik, IoT güvenliği, veri sıkıştırma ve gömülü sistem güvenliği pazarlarının örtüştüğü segmentte konumlanır." />
-      <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{[["Siber Güvenlik", "$274Md", "2030 projeksiyonu $478Md bandına ilerleyen ana pazar."], ["IoT Güvenliği", "$11.2Md", "Yüksek CAGR ile en hızlı büyüyen alt segmentlerden biri."], ["Veri Sıkıştırma", "$1.5Md", "Bulut, medya, analitik ve yapay zekâ veri hacmiyle büyüyen segment."], ["Gömülü Güvenlik", "$10Md", "Uç bilişim, otonom sistemler ve tıbbi cihazlarla genişleyen alan."]].map(([a, b, c]) => <div key={a} className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl"><p className="text-sm uppercase tracking-[0.25em] text-lime-200/70">{a}</p><h3 className="mt-4 text-4xl font-semibold text-white">{b}</h3><p className="mt-3 text-sm leading-7 text-white/55">{c}</p></div>)}</div>
 
-      <div className="mt-8 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#eef5ff] p-6 text-slate-900 shadow-[0_35px_140px_rgba(0,0,0,0.35)] md:p-10">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.25fr] lg:items-center">
+      <div className="relative mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {marketCards.map((card, index) => (
+          <motion.div key={card.title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ delay: index * 0.05 }} whileHover={{ y: -8, scale: 1.015 }} className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(190,242,100,0.16),transparent_42%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+            <p className="relative text-xs font-semibold uppercase tracking-[0.28em] text-lime-200/70">{card.title}</p>
+            <h3 className="relative mt-4 text-4xl font-semibold tracking-[-0.04em] text-white">{card.value}</h3>
+            <p className="relative mt-3 text-sm leading-7 text-white/55">{card.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative mt-8 overflow-hidden rounded-[2.8rem] border border-lime-300/18 bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.14),rgba(255,255,255,0.045)_38%,rgba(0,0,0,0.34))] p-6 shadow-[0_45px_160px_rgba(0,0,0,0.55)] backdrop-blur-2xl md:p-10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:70px_70px] opacity-35" />
+        <div className="relative grid gap-10 lg:grid-cols-[0.95fr_1.25fr] lg:items-center">
           <div className="flex justify-center">
-            <div className="relative h-[310px] w-[310px] md:h-[430px] md:w-[430px]">
-              <div className="absolute inset-0 rounded-full border-2 border-blue-300/60 bg-blue-200/20" />
-              <div className="absolute inset-[16%] rounded-full border-2 border-blue-400/45 bg-blue-300/20" />
-              <div className="absolute inset-[30%] rounded-full border-2 border-blue-500/60 bg-blue-400/25" />
-              <div className="absolute left-1/2 top-[9%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">TAM</div>
-              <div className="absolute left-1/2 top-[16%] -translate-x-1/2 text-center text-lg font-semibold text-blue-700">$150Md+</div>
-              <div className="absolute left-1/2 top-[28%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">SAM</div>
-              <div className="absolute left-1/2 top-[36%] -translate-x-1/2 text-center text-lg font-semibold text-blue-700">$40–50Md</div>
-              <div className="absolute left-1/2 top-[49%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">SOM</div>
-              <div className="absolute left-1/2 top-[57%] -translate-x-1/2 whitespace-nowrap text-center text-xl font-bold text-blue-700">$400M–$1.5Md</div>
+            <div className="relative h-[330px] w-[330px] md:h-[440px] md:w-[440px]">
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 38, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border border-lime-300/20" />
+              <motion.div animate={{ rotate: -360 }} transition={{ duration: 46, repeat: Infinity, ease: "linear" }} className="absolute inset-[8%] rounded-full border border-cyan-200/15" />
+              <motion.div animate={{ scale: [1, 1.035, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute inset-[2%] rounded-full border border-lime-300/25 bg-lime-300/[0.035] shadow-[0_0_90px_rgba(190,242,100,0.08)]" />
+              <motion.div animate={{ scale: [1, 1.045, 1] }} transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }} className="absolute inset-[19%] rounded-full border border-lime-300/35 bg-lime-300/[0.055]" />
+              <motion.div animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }} className="absolute inset-[35%] rounded-full border border-lime-300/55 bg-lime-300/[0.09] shadow-[0_0_70px_rgba(190,242,100,0.15)]" />
+              <div className="absolute left-1/2 top-[10%] -translate-x-1/2 text-center"><p className="font-mono text-xs tracking-[0.35em] text-lime-200/80">TAM</p><p className="mt-2 text-lg font-semibold text-lime-100">$150Md+</p></div>
+              <div className="absolute left-1/2 top-[34%] -translate-x-1/2 text-center"><p className="font-mono text-xs tracking-[0.35em] text-lime-200/80">SAM</p><p className="mt-2 text-lg font-semibold text-lime-100">$40–50Md</p></div>
+              <div className="absolute left-1/2 top-[53%] -translate-x-1/2 text-center"><p className="font-mono text-xs tracking-[0.35em] text-lime-200/80">SOM</p><p className="mt-2 whitespace-nowrap text-xl font-bold text-lime-200">$400M–$1.5Md</p></div>
+              <motion.div animate={{ opacity: [0.35, 1, 0.35], scale: [1, 1.22, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }} className="absolute left-[14%] top-[18%] h-3 w-3 rounded-full bg-lime-300 shadow-[0_0_25px_rgba(190,242,100,0.9)]" />
+              <motion.div animate={{ opacity: [0.25, 1, 0.25], scale: [1, 1.2, 1] }} transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }} className="absolute bottom-[18%] right-[17%] h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_25px_rgba(165,243,252,0.8)]" />
             </div>
           </div>
-          <div className="space-y-5">
-            {[
-              ["TAM — Toplam Erişilebilir Pazar", "$150Md+", "Siber güvenlik, IoT güvenliği, veri sıkıştırma ve gömülü sistem güvenliği pazarlarının toplamı. 2030 projeksiyonu; teorik maksimum pazar büyüklüğü."],
-              ["SAM — Hizmet Verilebilir Erişilebilir Pazar", "$40–50Md", "KSC'nin coğrafi, teknik ve segment odağıyla gerçekten ulaşabileceği pazar dilimi. IoT güvenliği + siber güvenlik yazılımı kesişim segmenti. 2025 tahmini."],
-              ["SOM — Hizmet Verilebilir Elde Edilebilir Pazar", "$400M–$1.5Md", "İlk 3–5 yılda %1–3 penetrasyon hedefi. Erken müşteri segmenti: fintech, savunma sanayi ve IoT OEM pazarları. Finansal projeksiyonlarla tutarlı, gerçekçi büyüme hedefi."],
-            ].map(([title, value, desc], idx) => (
-              <div key={title} className={`rounded-[2rem] border border-white/80 p-7 shadow-[0_20px_60px_rgba(37,99,235,0.10)] ${idx === 2 ? "bg-blue-200/45" : "bg-white/45"}`}>
-                <div className="flex items-start gap-5">
-                  <span className={`mt-2 h-4 w-4 shrink-0 rounded-full border-2 ${idx === 2 ? "border-blue-500 bg-blue-500" : "border-blue-300 bg-blue-100"}`} />
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-                    <p className="mt-3 text-3xl font-semibold text-blue-600">{value}</p>
-                    <p className="mt-4 text-base leading-8 text-slate-600">{desc}</p>
-                  </div>
+
+          <div className="space-y-4">
+            {tamSamSom.map((item, index) => (
+              <motion.div key={item.code} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ delay: index * 0.08 }} whileHover={{ x: 8 }} className={`group relative overflow-hidden rounded-[2rem] border p-6 backdrop-blur-2xl transition ${index === 2 ? "border-lime-300/35 bg-lime-300/[0.105] shadow-[0_0_70px_rgba(190,242,100,0.10)]" : "border-white/10 bg-black/25 hover:border-lime-300/25"}`}>
+                <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(190,242,100,0.10),transparent)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                <div className="relative flex items-start gap-5">
+                  <div className={`mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border font-mono text-xs font-semibold ${index === 2 ? "border-lime-300/40 bg-lime-300 text-black" : "border-lime-300/25 bg-lime-300/10 text-lime-200"}`}>{item.code}</div>
+                  <div><h3 className="text-lg font-semibold text-white">{item.code} — {item.title}</h3><p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-lime-200">{item.value}</p><p className="mt-4 text-sm leading-7 text-white/58">{item.desc}</p></div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -527,7 +553,7 @@ function CompetitorSection() {
       <SectionHeader eyebrow="08 — Rakip Analizi" title="Doğrudan rakip yok — farklı bir sınıf" copy="KSC, mevcut çözümlerin hiçbirinin sunmadığı değer önerisiyle pazara giriyor. Rakiplerini tamamlayan, onların yetersiz kaldığı noktalarda çözüm üreten bir katman olarak konumlanıyor." />
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {competitorCards.map((item) => (
-          <motion.article key={item.title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 shadow-[0_30px_120px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
+          <motion.article key={item.title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 shadow-[0_30px_120px_rgba(0,0,0,0.28)] backdrop-blur-2xl transition hover:-translate-y-1 hover:border-lime-300/25">
             <span className="inline-flex rounded-lg border border-lime-300/25 bg-lime-300/10 px-3 py-1 font-mono text-xs text-lime-200">{item.tag}</span>
             <h3 className="mt-6 text-xl font-semibold text-white">{item.title}</h3>
             <p className="mt-4 text-sm leading-8 text-white/58">{item.copy}</p>
@@ -543,7 +569,7 @@ function StrategicInvestmentSection() {
     <section id="investment" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
       <SectionHeader eyebrow="09 — Yatırım" title="Stratejik yatırım turu" copy="Yatırım hedefi; çekirdek teknolojiyi sertifikasyon, pazara giriş, gömülü sistem entegrasyonu ve kurumsal pilotlar için ölçeklenebilir hale getirmektir." />
       <div className="mt-12 rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_35px_140px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:p-10">
-        <div className="rounded-[2rem] border border-white/10 bg-black/25 p-10 text-center">
+        <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_0%,rgba(190,242,100,0.16),rgba(0,0,0,0.25)_55%)] p-10 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/40">Talep edilen yatırım</p>
           <h3 className="mt-4 text-6xl font-semibold tracking-[-0.06em] text-lime-200 md:text-7xl">$6.5M</h3>
           <p className="mt-4 text-sm text-white/50">24–36 aylık büyüme planını hayata geçirmek için · Yatırım sonrası değerleme: $30–40M</p>
@@ -551,13 +577,10 @@ function StrategicInvestmentSection() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {investmentUse.map((item) => (
-            <div key={item.title} className="rounded-[2rem] border border-white/10 bg-black/25 p-6">
+            <div key={item.title} className="rounded-[2rem] border border-white/10 bg-black/25 p-6 transition hover:-translate-y-1 hover:border-lime-300/25">
               <div className="flex gap-5">
                 <p className="text-4xl font-light text-lime-200">{item.pct}</p>
-                <div>
-                  <h4 className="font-semibold text-white">{item.title}</h4>
-                  <p className="mt-3 text-sm leading-7 text-white/55">{item.copy}</p>
-                </div>
+                <div><h4 className="font-semibold text-white">{item.title}</h4><p className="mt-3 text-sm leading-7 text-white/55">{item.copy}</p></div>
               </div>
             </div>
           ))}
@@ -565,24 +588,14 @@ function StrategicInvestmentSection() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-4">
           {[["Yatırım sonrası değerleme", "$30–40M"], ["5. yıl net kâr", "$40M"], ["Melek yatırımcı ROI", "10–30x"], ["VC yatırımcı ROI", "5–15x"]].map(([label, value]) => (
-            <div key={label} className="rounded-[2rem] border border-white/10 bg-black/25 p-6 text-center">
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">{label}</p>
-              <p className="mt-3 text-3xl font-semibold text-lime-200">{value}</p>
-            </div>
+            <div key={label} className="rounded-[2rem] border border-white/10 bg-black/25 p-6 text-center"><p className="text-xs uppercase tracking-[0.24em] text-white/35">{label}</p><p className="mt-3 text-3xl font-semibold text-lime-200">{value}</p></div>
           ))}
         </div>
 
         <div className="mt-6 rounded-[2rem] border border-white/10 bg-black/25 p-6">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-lime-200/80">Hedeflenen yatırımcı profili</p>
           <div className="mt-5 grid gap-3 md:grid-cols-2">
-            {[
-              "Savunma, havacılık, siber güvenlik veya derin teknoloji odaklı girişim sermayesi fonları",
-              "IoT veya gömülü sistem alanlarında portföy şirketleri olan VC’ler",
-              "Bulut bilişim, veri depolama veya siber güvenlik alanlarında stratejik yatırımlar yapan şirketler",
-              "Teknoloji transfer ofisleri ve inovasyon fonları",
-            ].map((item) => (
-              <div key={item} className="flex gap-3 text-sm leading-6 text-white/58"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-lime-200" />{item}</div>
-            ))}
+            {["Savunma, havacılık, siber güvenlik veya derin teknoloji odaklı girişim sermayesi fonları", "IoT veya gömülü sistem alanlarında portföy şirketleri olan VC’ler", "Bulut bilişim, veri depolama veya siber güvenlik alanlarında stratejik yatırımlar yapan şirketler", "Teknoloji transfer ofisleri ve inovasyon fonları"].map((item) => <div key={item} className="flex gap-3 text-sm leading-6 text-white/58"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-lime-200" />{item}</div>)}
           </div>
         </div>
       </div>
