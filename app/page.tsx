@@ -9,7 +9,6 @@ import {
   Binary,
   Building2,
   CheckCircle2,
-  ChevronRight,
   CloudCog,
   Cpu,
   DatabaseZap,
@@ -17,18 +16,13 @@ import {
   FileLock2,
   Fingerprint,
   Gauge,
-  Globe2,
   HardDrive,
   Layers3,
   LockKeyhole,
   Mail,
-  Network,
   Radar,
-  Rocket,
   ScanLine,
-  ServerCog,
   ShieldCheck,
-  TerminalSquare,
   Zap,
 } from "lucide-react";
 
@@ -55,7 +49,8 @@ const navItems = [
   { label: "Kanıt", href: "#proof" },
   { label: "Kullanım", href: "#domains" },
   { label: "Pazar", href: "#market" },
-  { label: "Roadmap", href: "#roadmap" },
+  { label: "Rakip", href: "#competitor" },
+  { label: "Yatırım", href: "#investment" },
 ];
 
 const proofRows = [
@@ -242,16 +237,42 @@ const domainDetails = [
   },
 ];
 
-const revenueCards = [
-  { tier: "Freemium", title: "Geliştirici / Açık Kaynak", price: "Ücretsiz", copy: "Temel kütüphane belirli kullanım sınırına kadar ücretsiz sunularak ekosistem büyümesi ve ürün farkındalığı hedeflenir." },
-  { tier: "Pro / Takım", title: "Geliştirici ve küçük ekipler", price: "$49–$199/ay", copy: "Daha yüksek işlem kapasitesi, ticari kullanım ve ekip lisansı için abonelik modeli." },
-  { tier: "Kurumsal", title: "Büyük kurumlar", price: "Özel lisans", copy: "Bankalar, devlet kurumları, telekom ve kritik altyapılar için yıllık veya çok yıllı kurumsal lisans." },
-  { tier: "Savunma / Kritik", title: "Proje bazlı özel sözleşme", price: "$1M+", copy: "Kaynak kodu, özel entegrasyon, test ve saha gereksinimleri olan projeler için uzun vadeli sözleşmeler." },
-  { tier: "OEM", title: "Cihaz üreticileri", price: "$0.10–$1.00/cihaz", copy: "IoT ve gömülü cihaz üreticileri için cihaz başına ölçeklenen lisans modeli." },
+const competitorCards = [
+  {
+    tag: "Disk & Dosya Şifreleme",
+    title: "VeraCrypt, AxCrypt, NordLocker",
+    copy:
+      "Güvenilir ve olgunlaşmış şifreleme araçlarıdır. Ancak çoğu veri boyutunu küçültmez, metadata sızıntısını doğrudan çözmez ve IoT/gömülü sistemlerde doğal olarak çalışacak hafif bir kapsülleme katmanı sunmaz. KSC bu ürünlere doğrudan rakip değil; onların yetmediği veri katmanında devreye giren tamamlayıcı bir sınıftır.",
+  },
+  {
+    tag: "Dosya Sıkıştırma",
+    title: "WinRAR, 7-Zip, PeaZip, WinZip",
+    copy:
+      "Milyarlarca kullanıcının güvendiği arşivleme araçlarıdır. Boyutu küçültürler fakat güvenlik ana değer önerileri değildir; arşiv başlıkları ve format yapıları tanınabilir kalabilir. KSC’nin iddiası yalnızca sıkıştırmak değil, sıkıştırırken aynı anda anlamlandırılması zor bir kapsül davranışı oluşturmaktır.",
+  },
+  {
+    tag: "Kurumsal Veri Güvenliği",
+    title: "Symantec Endpoint Security, ESET, Bitdefender GravityZone",
+    copy:
+      "Kapsamlı uç nokta güvenlik platformlarıdır. Kötü amaçlı yazılım, tehdit tespiti ve şifreleme politikalarını yönetirler; ancak veri boyutunu küçültme ve kaynak kısıtlı cihazlarda hafif kapsülleme üretme odağında değildirler. KSC, bu platformların işlemediği veri temsil katmanında konumlanır.",
+  },
+  {
+    tag: "Donanım Tabanlı IoT Güvenliği",
+    title: "Rambus CryptoManager, Infineon Optiga, NXP EdgeLock",
+    copy:
+      "Silikon seviyesinde güvenlik sağlayan donanım IP ve çip çözümleridir. Son derece güçlüdür; ancak özel donanım entegrasyonu gerektirir. KSC ise mevcut cihazlara donanım değişikliği olmadan yazılım tabanlı ek güvenlik getirmeyi hedefler.",
+  },
+];
+
+const investmentUse = [
+  { pct: "%35", title: "Algoritma Geliştirme & Sertifikasyon", copy: "Patent başvuruları, FIPS 140-3 sertifikası, Native C/Rust/Python SDK geliştirme ve güvenlik denetimleri." },
+  { pct: "%30", title: "Pazar Girişi / Go-to-Market", copy: "ABD, AB, Körfez ve Türkiye’de satış ekibi kurulumu, pazarlama, fuarlar ve ilk pilot anlaşmalar." },
+  { pct: "%20", title: "Gömülü Sistem & OEM Entegrasyonu", copy: "ARM Cortex-M, ESP32, RISC-V optimizasyonu, gömülü sistem mühendisliği ve OEM özel entegrasyonları." },
+  { pct: "%15", title: "İş Geliştirme & Yönetim", copy: "Yasal, muhasebe, ofis giderleri, yönetim ekibi maaşları ve acil durum fonu." },
 ];
 
 const roadmap = [
-  { period: "2025–2026 H1", phase: "Mevcut durum", title: "Teorik temel ve prototip", bullets: ["Algoritmik yaklaşım doğrulandı", "CLI prototip seviyesi oluşturuldu", "İlk laboratuvar testleri tamamlandı", "TRL 3 seviyesi hedeflendi"] },
+  { period: "2025–2026 H1", phase: "Mevcut durum", title: "Teorik temel ve prototip", bullets: ["Algoritmik yaklaşım doğrulandı", "CLI prototip seviyesi oluşturuldu", "İlk laboratuvar testleri tamamlandı", "TRL 4 seviyesine geçiş hedeflendi"] },
   { period: "2026 H2", phase: "MVP", title: "Çekirdek ürün ve test altyapısı", bullets: ["SDK mimarisi netleştirilir", "Daha geniş dosya tipi testleri yapılır", "Kanıt paneli ve demo akışı hazırlanır", "PoC görüşmeleri başlatılır"] },
   { period: "2027", phase: "Pilot", title: "Sektörel PoC ve kurumsal doğrulama", bullets: ["FinTech, IoT, savunma ve adli bilişim senaryoları test edilir", "On-premise kurulum ve CLI/GUI deneyimi geliştirilir", "İlk kurumsal pilotlar hedeflenir"] },
   { period: "2028+", phase: "Scale", title: "Ticarileşme ve ölçeklenme", bullets: ["OEM entegrasyonu", "Kurumsal lisans modeli", "SaaS panel", "Uluslararası partner ağı"] },
@@ -325,7 +346,7 @@ function Hero() {
           <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-lg leading-8 text-white/65">KSC, geleneksel şifreleme ve kapsülleme yaklaşımlarının en kritik sorunlarından biri olan çıktı boyutu ve metadata izini hedefleyen; kontrollü sıkıştırma, entropi odaklı koruma ve güvenli kapsülleme fikrini birleştiren yazılım tabanlı bir veri güvenliği yaklaşımıdır.</motion.p>
           <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row"><GlowLink href="#investment">Yatırım detayları <ArrowRight className="h-4 w-4" /></GlowLink><GlowLink href="#product" variant="ghost">Teknolojiyi incele</GlowLink></motion.div>
           <motion.div variants={fadeUp} className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-4">
-            {[["%10–70", "Düşük entropide küçülme hedefi"], ["%1–5", "Yüksek entropide sınırlı kayıp"], ["10–20 KB", "RAM hedefi"], ["TRL 3", "Teknoloji olgunluğu"]].map(([num, label]) => <div key={label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl"><div className="text-2xl font-semibold text-lime-200">{num}</div><div className="mt-1 text-xs text-white/45">{label}</div></div>)}
+            {[["%10–70", "Düşük entropide küçülme hedefi"], ["%1–5", "Yüksek entropide sınırlı kayıp"], ["10–20 KB", "RAM hedefi"], ["TRL 4", "Deneysel kanıtlama"]].map(([num, label]) => <div key={label} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl"><div className="text-2xl font-semibold text-lime-200">{num}</div><div className="mt-1 text-xs text-white/45">{label}</div></div>)}
           </motion.div>
         </motion.div>
 
@@ -460,25 +481,111 @@ function MarketSection() {
     <section id="market" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
       <SectionHeader eyebrow="07 — Pazar Büyüklüğü" title="Dört büyük pazarın kesişim noktasında" copy="KSC; siber güvenlik, IoT güvenliği, veri sıkıştırma ve gömülü sistem güvenliği pazarlarının örtüştüğü segmentte konumlanır." />
       <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{[["Siber Güvenlik", "$274Md", "2030 projeksiyonu $478Md bandına ilerleyen ana pazar."], ["IoT Güvenliği", "$11.2Md", "Yüksek CAGR ile en hızlı büyüyen alt segmentlerden biri."], ["Veri Sıkıştırma", "$1.5Md", "Bulut, medya, analitik ve yapay zekâ veri hacmiyle büyüyen segment."], ["Gömülü Güvenlik", "$10Md", "Uç bilişim, otonom sistemler ve tıbbi cihazlarla genişleyen alan."]].map(([a, b, c]) => <div key={a} className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl"><p className="text-sm uppercase tracking-[0.25em] text-lime-200/70">{a}</p><h3 className="mt-4 text-4xl font-semibold text-white">{b}</h3><p className="mt-3 text-sm leading-7 text-white/55">{c}</p></div>)}</div>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">{[["TAM", "$150Md+", "Toplam erişilebilir pazar"], ["SAM", "$40–50Md", "Hizmet verilebilir erişilebilir pazar"], ["SOM", "$400M–$1.5Md", "İlk 3–5 yıl hedeflenebilir pazar"]].map(([a, b, c]) => <div key={a} className="rounded-[2rem] border border-lime-300/15 bg-lime-300/[0.06] p-6 backdrop-blur-xl"><p className="text-sm text-white/45">{a}</p><h3 className="mt-3 text-3xl font-semibold text-lime-200">{b}</h3><p className="mt-2 text-sm text-white/55">{c}</p></div>)}</div>
+
+      <div className="mt-8 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#eef5ff] p-6 text-slate-900 shadow-[0_35px_140px_rgba(0,0,0,0.35)] md:p-10">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.25fr] lg:items-center">
+          <div className="flex justify-center">
+            <div className="relative h-[310px] w-[310px] md:h-[430px] md:w-[430px]">
+              <div className="absolute inset-0 rounded-full border-2 border-blue-300/60 bg-blue-200/20" />
+              <div className="absolute inset-[16%] rounded-full border-2 border-blue-400/45 bg-blue-300/20" />
+              <div className="absolute inset-[30%] rounded-full border-2 border-blue-500/60 bg-blue-400/25" />
+              <div className="absolute left-1/2 top-[9%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">TAM</div>
+              <div className="absolute left-1/2 top-[16%] -translate-x-1/2 text-center text-lg font-semibold text-blue-700">$150Md+</div>
+              <div className="absolute left-1/2 top-[28%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">SAM</div>
+              <div className="absolute left-1/2 top-[36%] -translate-x-1/2 text-center text-lg font-semibold text-blue-700">$40–50Md</div>
+              <div className="absolute left-1/2 top-[49%] -translate-x-1/2 text-center font-mono text-sm tracking-[0.25em] text-blue-700">SOM</div>
+              <div className="absolute left-1/2 top-[57%] -translate-x-1/2 whitespace-nowrap text-center text-xl font-bold text-blue-700">$400M–$1.5Md</div>
+            </div>
+          </div>
+          <div className="space-y-5">
+            {[
+              ["TAM — Toplam Erişilebilir Pazar", "$150Md+", "Siber güvenlik, IoT güvenliği, veri sıkıştırma ve gömülü sistem güvenliği pazarlarının toplamı. 2030 projeksiyonu; teorik maksimum pazar büyüklüğü."],
+              ["SAM — Hizmet Verilebilir Erişilebilir Pazar", "$40–50Md", "KSC'nin coğrafi, teknik ve segment odağıyla gerçekten ulaşabileceği pazar dilimi. IoT güvenliği + siber güvenlik yazılımı kesişim segmenti. 2025 tahmini."],
+              ["SOM — Hizmet Verilebilir Elde Edilebilir Pazar", "$400M–$1.5Md", "İlk 3–5 yılda %1–3 penetrasyon hedefi. Erken müşteri segmenti: fintech, savunma sanayi ve IoT OEM pazarları. Finansal projeksiyonlarla tutarlı, gerçekçi büyüme hedefi."],
+            ].map(([title, value, desc], idx) => (
+              <div key={title} className={`rounded-[2rem] border border-white/80 p-7 shadow-[0_20px_60px_rgba(37,99,235,0.10)] ${idx === 2 ? "bg-blue-200/45" : "bg-white/45"}`}>
+                <div className="flex items-start gap-5">
+                  <span className={`mt-2 h-4 w-4 shrink-0 rounded-full border-2 ${idx === 2 ? "border-blue-500 bg-blue-500" : "border-blue-300 bg-blue-100"}`} />
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+                    <p className="mt-3 text-3xl font-semibold text-blue-600">{value}</p>
+                    <p className="mt-4 text-base leading-8 text-slate-600">{desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-function RevenueSection() {
+function CompetitorSection() {
   return (
-    <section id="revenue" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
-      <SectionHeader eyebrow="08 — Gelir Modeli" title="Müşteri segmentlerine özel çok katmanlı gelir modeli" />
-      <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">{revenueCards.map((item) => <div key={item.tier} className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl"><p className="text-xs uppercase tracking-[0.25em] text-lime-200/70">{item.tier}</p><h3 className="mt-5 text-xl font-semibold">{item.title}</h3><p className="mt-3 text-2xl font-semibold text-lime-200">{item.price}</p><p className="mt-4 text-sm leading-7 text-white/55">{item.copy}</p></div>)}</div>
+    <section id="competitor" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
+      <SectionHeader eyebrow="08 — Rakip Analizi" title="Doğrudan rakip yok — farklı bir sınıf" copy="KSC, mevcut çözümlerin hiçbirinin sunmadığı değer önerisiyle pazara giriyor. Rakiplerini tamamlayan, onların yetersiz kaldığı noktalarda çözüm üreten bir katman olarak konumlanıyor." />
+      <div className="mt-12 grid gap-5 md:grid-cols-2">
+        {competitorCards.map((item) => (
+          <motion.article key={item.title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 shadow-[0_30px_120px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
+            <span className="inline-flex rounded-lg border border-lime-300/25 bg-lime-300/10 px-3 py-1 font-mono text-xs text-lime-200">{item.tag}</span>
+            <h3 className="mt-6 text-xl font-semibold text-white">{item.title}</h3>
+            <p className="mt-4 text-sm leading-8 text-white/58">{item.copy}</p>
+          </motion.article>
+        ))}
+      </div>
     </section>
   );
 }
 
-function FinancialsSection() {
+function StrategicInvestmentSection() {
   return (
-    <section id="financials" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
-      <SectionHeader eyebrow="09 — Finansal Projeksiyon" title="5 yıllık büyüme hedefleri ve yatırımcı senaryosu" copy="Finansal model; gelir kanallarının çeşitlendirilmesi, kurumsal lisanslar, OEM ölçeklenmesi ve savunma/kritik altyapı projeleri üzerinden kurgulanır." />
-      <div className="mt-12 grid gap-4 md:grid-cols-3">{[["Break-even", "2029", "Q1–Q2, yaklaşık $2–3M net kâr senaryosu"], ["Yıl 5 net kâr marjı", "%50", "$40M net kâr / $80M gelir hedefi"], ["Hedef değerleme", "$500M–$1B", "Yıl 5 yatırımcı senaryosu"]].map(([a, b, c]) => <div key={a} className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-xl"><p className="text-sm uppercase tracking-[0.25em] text-white/45">{a}</p><h3 className="mt-4 text-4xl font-semibold text-lime-200">{b}</h3><p className="mt-3 text-sm text-white/55">{c}</p></div>)}</div>
+    <section id="investment" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
+      <SectionHeader eyebrow="09 — Yatırım" title="Stratejik yatırım turu" copy="Yatırım hedefi; çekirdek teknolojiyi sertifikasyon, pazara giriş, gömülü sistem entegrasyonu ve kurumsal pilotlar için ölçeklenebilir hale getirmektir." />
+      <div className="mt-12 rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_35px_140px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:p-10">
+        <div className="rounded-[2rem] border border-white/10 bg-black/25 p-10 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/40">Talep edilen yatırım</p>
+          <h3 className="mt-4 text-6xl font-semibold tracking-[-0.06em] text-lime-200 md:text-7xl">$6.5M</h3>
+          <p className="mt-4 text-sm text-white/50">24–36 aylık büyüme planını hayata geçirmek için · Yatırım sonrası değerleme: $30–40M</p>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {investmentUse.map((item) => (
+            <div key={item.title} className="rounded-[2rem] border border-white/10 bg-black/25 p-6">
+              <div className="flex gap-5">
+                <p className="text-4xl font-light text-lime-200">{item.pct}</p>
+                <div>
+                  <h4 className="font-semibold text-white">{item.title}</h4>
+                  <p className="mt-3 text-sm leading-7 text-white/55">{item.copy}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-4">
+          {[["Yatırım sonrası değerleme", "$30–40M"], ["5. yıl net kâr", "$40M"], ["Melek yatırımcı ROI", "10–30x"], ["VC yatırımcı ROI", "5–15x"]].map(([label, value]) => (
+            <div key={label} className="rounded-[2rem] border border-white/10 bg-black/25 p-6 text-center">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/35">{label}</p>
+              <p className="mt-3 text-3xl font-semibold text-lime-200">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 rounded-[2rem] border border-white/10 bg-black/25 p-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-lime-200/80">Hedeflenen yatırımcı profili</p>
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {[
+              "Savunma, havacılık, siber güvenlik veya derin teknoloji odaklı girişim sermayesi fonları",
+              "IoT veya gömülü sistem alanlarında portföy şirketleri olan VC’ler",
+              "Bulut bilişim, veri depolama veya siber güvenlik alanlarında stratejik yatırımlar yapan şirketler",
+              "Teknoloji transfer ofisleri ve inovasyon fonları",
+            ].map((item) => (
+              <div key={item} className="flex gap-3 text-sm leading-6 text-white/58"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-lime-200" />{item}</div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -488,20 +595,6 @@ function RoadmapSection() {
     <section id="roadmap" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
       <SectionHeader eyebrow="10 — Roadmap" title="Ticarileşme ve büyüme kilometre taşları" />
       <div className="mt-12 space-y-4">{roadmap.map((item) => <div key={item.period} className="grid gap-4 rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl md:grid-cols-[180px_1fr]"><div><p className="font-mono text-sm text-lime-200">{item.period}</p><p className="mt-2 inline-flex rounded-full border border-lime-300/20 bg-lime-300/10 px-3 py-1 text-xs text-lime-200">{item.phase}</p></div><div><h3 className="text-2xl font-semibold">{item.title}</h3><div className="mt-4 grid gap-2 md:grid-cols-2">{item.bullets.map((b) => <div key={b} className="flex gap-3 text-sm text-white/58"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-lime-200" />{b}</div>)}</div></div></div>)}</div>
-    </section>
-  );
-}
-
-function InvestmentSection() {
-  return (
-    <section id="investment" className="mx-auto max-w-7xl px-6 py-24 text-white md:py-32">
-      <div className="relative overflow-hidden rounded-[2.5rem] border border-lime-300/20 bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.18),rgba(255,255,255,0.04)_35%,rgba(0,0,0,0.3))] p-8 shadow-[0_40px_140px_rgba(0,0,0,0.5)] backdrop-blur-2xl md:p-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-lime-200/80">11 — Investment Ask</p>
-        <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-0.045em] md:text-6xl">$1.5M yatırım ile TRL 3 seviyesinden kurumsal pilotlara geçiş.</h2>
-        <p className="mt-5 max-w-2xl text-base leading-8 text-white/58">Yatırım kullanımı; Ar-Ge ve çekirdek mühendislik, güvenlik validasyonu, ürünleştirme, pilot müşteri geliştirme ve satış/pazarlama faaliyetlerine ayrılır.</p>
-        <div className="mt-8 grid gap-4 md:grid-cols-4">{[["%40", "Ar-Ge ve çekirdek mühendislik"], ["%25", "Ürünleştirme ve SDK/CLI/GUI"], ["%20", "Pilot müşteri ve validasyon"], ["%15", "Satış, pazarlama ve operasyon"]].map(([a, b]) => <div key={a} className="rounded-2xl border border-white/10 bg-black/25 p-5"><h3 className="text-3xl font-semibold text-lime-200">{a}</h3><p className="mt-2 text-sm text-white/55">{b}</p></div>)}</div>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><GlowLink href="mailto:info@kscsecure.com">Yatırımcı görüşmesi iste <Mail className="h-4 w-4" /></GlowLink><GlowLink href="#top" variant="ghost">Sayfa başına dön</GlowLink></div>
-      </div>
     </section>
   );
 }
@@ -519,10 +612,9 @@ export default function KSCPremiumLanding() {
       <ProofSection />
       <DomainsSection />
       <MarketSection />
-      <RevenueSection />
-      <FinancialsSection />
+      <CompetitorSection />
+      <StrategicInvestmentSection />
       <RoadmapSection />
-      <InvestmentSection />
       <footer className="mx-auto max-w-7xl px-6 pb-12 text-white/45"><div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 text-sm backdrop-blur-xl"><div className="flex flex-col justify-between gap-4 md:flex-row md:items-center"><a href="#top">KSC Secure Data Systems · Kontrollü Sıkıştırma ile Entropi Artırımlı Veri Koruma</a><div className="flex flex-wrap gap-5">{navItems.map((item) => <a key={item.href} href={item.href} className="hover:text-lime-200">{item.label}</a>)}</div></div></div></footer>
     </main>
   );
